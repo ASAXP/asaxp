@@ -6,8 +6,9 @@
     "nextapp": "yarn workspace next-app",
     "expressapp": "yarn workspace express-app",
     "types": "yarn workspace types",
-    "postinstall": "husky install",
-    "prepare": "husky"
+    "prepare": "husky install",
+    "format": "prettier --write '**/*.{ts,tsx}",
+    "lint:fix": "eslint '**/*.{ts,tsx}'"
   },
   "workspaces": [
     "packages/*/*"
@@ -23,6 +24,9 @@
     "zod": "^3.23.8"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "prettier --write && eslint --fix"
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
