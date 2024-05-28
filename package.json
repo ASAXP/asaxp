@@ -1,0 +1,16 @@
+{
+  "name": "asaxp",
+  "packageManager": "yarn@4.2.2",
+  "private": true,
+  "scripts": {
+    "nextapp": "yarn workspace next-app",
+    "expressapp": "yarn workspace express-app",
+    "types": "yarn workspace types"
+  },
+  "workspaces": [
+    "packages/*/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
