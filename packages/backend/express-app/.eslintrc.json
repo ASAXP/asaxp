@@ -1,0 +1,19 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true
+  },
+  "extends": ["eslint:recommend", "plugin:@typescript-eslint/recommend"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "eqeqeq": ["error", "always"]
+  }
+}
