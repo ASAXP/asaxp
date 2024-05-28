@@ -13,6 +13,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"types@workspace:packages/libs/types":
+  version: 0.0.0-use.local
+  resolution: "types@workspace:packages/libs/types"
+  dependencies:
+    typescript: "npm:^5.4.5"
+  languageName: unknown
+  linkType: soft
+
 "typescript@npm:^5.4.5":
   version: 5.4.5
   resolution: "typescript@npm:5.4.5"

@@ -2,8 +2,14 @@
   "extends": "./tsconfig.spec.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@asaxp/types": ["packages/libs/types/src"]
+    }
   },
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./packages/libs/types"
+    }
+  ]
 }
