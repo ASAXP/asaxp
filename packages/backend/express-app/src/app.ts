@@ -1,11 +1,10 @@
 import express from "express";
-// import helmet from "helmet";
-// import * as path from "path";
+import helmet from "helmet";
 import globalErrorHandler from "./middleware/globalErrorHandler";
 
 const app = express();
 
-// app.use(helmet());
+app.use(helmet());
 
 app.use(globalErrorHandler);
 
