@@ -2,14 +2,11 @@ import mysql from "mysql2";
 
 const pool = mysql
   .createPool({
-    host: process.env.DATABASE_URL || "127.0.0.1",
-    user: "root",
-    password: "",
-    database: "notes_app",
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
   })
   .promise();
 
-// async function getNots() {
-//   const [rows] = await pool.query("select * from notes");
-//   return rows;
-// }
+export default pool;
