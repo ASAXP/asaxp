@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { HttpError } from "../utils/CustomError";
+import { HttpError } from "../utils/HttpError";
 
 function globalErrorHandler(
   err: Error,
