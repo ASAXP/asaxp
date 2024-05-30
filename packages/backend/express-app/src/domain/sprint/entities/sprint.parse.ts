@@ -10,6 +10,12 @@ export const sprint: z.Schema<Sprint> = z.object({
   endDate: z.date(),
 });
 
-type ParseSprint = (arg: unknown) => Sprint;
+// type ParseSprint = (arg: unknown) => Sprint;
 
-export const parseSprint: ParseSprint = (arg: unknown) => sprint.parse(arg);
+export const parseSprint = (arg: unknown) => {
+  const result = sprint.safeParse(arg);
+  if (!result.success) {
+    console.log(result.error.issues);
+  }
+  return result.data;
+};

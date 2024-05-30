@@ -5,6 +5,12 @@ export const project: z.Schema<Project> = z.object({
   id: z.number(),
 });
 
-type ParseProject = (arg: unknown) => Project;
+// type ParseProject = (arg: unknown) => Project;
 
-export const ParseProject: ParseProject = (arg: unknown) => project.parse(arg);
+export const ParseProject = (arg: unknown) => {
+  const result = project.safeParse(arg);
+  if (!result.success) {
+    console.log(result.error.issues);
+  }
+  return result.data;
+};
