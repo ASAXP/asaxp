@@ -11,7 +11,9 @@
     "lint:fix": "eslint '**/*.{ts,tsx}'"
   },
   "workspaces": [
-    "packages/*/*"
+    "packages/frontend/next-app",
+    "packages/backend/express-app",
+    "packages/libs/types"
   ],
   "devDependencies": {
     "eslint": "^9.3.0",

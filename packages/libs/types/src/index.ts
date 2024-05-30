@@ -1,1 +1,4 @@
-export type sampleType = string;
+export const hello = () => {
+  console.log("hello");
+  return "hello";
+};

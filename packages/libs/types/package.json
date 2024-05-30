@@ -1,6 +1,9 @@
 {
   "name": "@asaxp/types",
   "packageManager": "yarn@4.2.2",
+  "scripts": {
+    "build": "yarn tsc"
+  },
   "devDependencies": {
     "typescript": "^5.4.5"
   }

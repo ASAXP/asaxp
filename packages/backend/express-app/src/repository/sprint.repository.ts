@@ -1,4 +1,4 @@
-import {} from "@asaxp/types";
+import { hello } from "@asaxp/types";
 
 const SQL_SELECT = `
   SELECT 

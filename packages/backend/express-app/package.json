@@ -1,6 +1,8 @@
 {
   "name": "express-app",
   "packageManager": "yarn@4.2.2",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "nodemon src/app.ts"
   },
