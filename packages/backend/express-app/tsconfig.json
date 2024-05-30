@@ -2,13 +2,21 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
+    "baseUrl": "./",
     "paths": {
-      "@asaxp/types": ["../../libs/types/src"]
+      "@asaxp/types": ["../../libs/types/src"],
+      "@config/*": ["src/config/*"],
+      "@controller/*": ["src/controller/*"],
+      "@database/*": ["src/database/*"],
+      "@domain/*": ["src/domain/*"],
+      "@middleware/*": ["src/middleware/*"],
+      "@repository/*": ["src/repository/*"],
+      "@routes/*": ["src/routes/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "allowJs": true,
     "outDir": "./dist",
     "composite": true,
-    "baseUrl": "./",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,

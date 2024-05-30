@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { HttpError } from "../utils/HttpError";
+import { HttpError } from "@utils/HttpError";
+
 import { ZodError } from "zod";
 
 function globalErrorHandler(
