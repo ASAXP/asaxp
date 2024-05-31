@@ -1,4 +1,6 @@
-import { hello } from "@asaxp/types";
+import db from "@database/database";
+import { Sprint } from "@domain/sprint/entities/sprint";
+import type { ResultSetHeader, RowDataPacket } from "mysql2";
 
 const SQL_SELECT = `
   SELECT 
@@ -14,4 +16,14 @@ const SQL_SELECT = `
   sprints
 `;
 
-// const sprintFindAllRepo: Promise<Sprint[]> = () => {};
+const sprintFindAllRepo = async () => {
+  const queryText = SQL_SELECT + " limit 10";
+  // const [result] = await db.query(queryText);
+  // return result as Sprint;
+};
+
+const sprintFindById = async (id: bigint) => {
+  const queryText = SQL_SELECT + " WHERE id = ?";
+  const [results, fields] = await db.query(queryText, [id]);
+  return results[0];
+};
