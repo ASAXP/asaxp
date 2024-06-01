@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": "./",
     "plugins": [
       {
         "name": "next"
@@ -20,7 +21,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@asaxp/types": ["../../libs/types/src"]
+      "@asaxp/types": ["../../libs/types/src"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "references": [{ "path": "../../libs/types" }],
