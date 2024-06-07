@@ -1,3 +1,1 @@
-export const hello = () => {
-  return "hello";
-};
+export * from "./domain/story";
