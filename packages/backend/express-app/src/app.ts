@@ -9,8 +9,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use(helmet());
-
 app.use(globalErrorHandler);
 
 console.log("hello express");
