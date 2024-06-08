@@ -1,0 +1,1 @@
+SELECT  `id`,  `parent_id`,  `type`,  `description`, LEFT(`content`, 256),  `assignee_id`,  `point`,  `created_at`,  `updated_at` FROM `xp-app`.`stories` LIMIT 1000;
