@@ -14,11 +14,13 @@ type: "epic" | "story" | "spike";
 // 100자 정도로 스토리 설명 : 사용자는 ~~를 할 수 있다.
 description: string;
 // 스토리의 상세내용
-content: string;
+content?: string;
 // story point
 point: number;
 // 담당자
 assignee?: string;
+// id
+id: string | number;
         </textarea>
         <button onclick="onClickTransform()">변환</button>
         <textarea id="result" rows="12"></textarea>
@@ -55,9 +57,15 @@ assignee?: string;
         typeString = typeString.replaceAll(/:(.*\|.*);/g, (all, v) => {
             const enums = v.split("|").map((key)=>key.trim());
 
-            let result = "z.union([";
+            let result = ": z.union([";
             let count = 0;
             for (const en of enums) {
+                if (simpleTypes.includes(en)) {
+                    if (count > 0) result += ', '
+                    count++
+                    result += `z.${en}()`
+                    console.log("result", result)
+                }
                 if (!simpleTypes.includes(en)) {
                     if (count > 0) result += ', '
                     count++
