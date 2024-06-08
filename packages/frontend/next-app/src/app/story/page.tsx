@@ -7,6 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import SprintTableHeader from "./SprintTableHeader";
+import StoryRow from "./StoryRow";
 
 export default function page() {
   return (
@@ -33,7 +34,32 @@ export default function page() {
           </TableBody>
         </Table>
       </section>
-      <section aria-labelledby=""></section>
+      <section className="grid gap-12 my-20" aria-labelledby="">
+        <StoryRow
+          storyId={0}
+          description="dskj"
+          storyPoint={2}
+          checked={false}
+        />
+        <StoryRow
+          storyId={0}
+          description="dskj"
+          storyPoint={2}
+          checked={false}
+        />
+        <StoryRow
+          storyId={0}
+          description="dskj"
+          storyPoint={2}
+          checked={false}
+        />
+        <StoryRow
+          storyId={0}
+          description="dskj"
+          storyPoint={2}
+          checked={false}
+        />
+      </section>
     </main>
   );
 }

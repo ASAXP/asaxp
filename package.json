@@ -3,8 +3,8 @@
   "packageManager": "yarn@4.2.2",
   "private": true,
   "scripts": {
-    "nextapp": "yarn workspace next-app",
-    "expressapp": "yarn workspace express-app",
+    "client": "yarn workspace next-app",
+    "server": "yarn workspace express-app",
     "types": "yarn workspace types",
     "prepare": "husky install",
     "format": "prettier --write '**/*.{ts,tsx}",
