@@ -1,11 +1,17 @@
+import storyRepository from "@repository/story.repository";
 import tryCatch from "@utils/tryCatch";
 import express from "express";
 
-const router = express.Router();
+const storyRouter = express.Router();
 
-router.get(
+storyRouter.get(
   "/story",
-  tryCatch(() => {}),
+  tryCatch(async (req, res) => {
+    const { outcome, payload } = await storyRepository.getAllStories();
+    if (outcome) {
+      res.json(payload);
+    }
+  }),
 );
 
-export default router;
+export default storyRouter;

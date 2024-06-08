@@ -12,7 +12,8 @@
       "@middleware/*": ["src/middleware/*"],
       "@repository/*": ["src/repository/*"],
       "@routes/*": ["src/routes/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@libs/types": ["../../libs/types/src"]
     },
     "allowJs": true,
     "outDir": "./dist",

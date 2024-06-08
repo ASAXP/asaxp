@@ -6,10 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import api from "@/api/api";
+import { Story } from "@libs/types";
 import SprintTableHeader from "./SprintTableHeader";
 import StoryRow from "./StoryRow";
 
-export default function page() {
+export default async function page() {
+  const result = await api.get<Story[]>("http://localhost:8080/story");
   return (
     <main className="mx-6">
       <section className="my-6" aria-labelledby="current-sprint-table">
@@ -26,11 +29,15 @@ export default function page() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableHead>아이디</TableHead>
-              <TableHead>내용</TableHead>
-              <TableHead>포인트</TableHead>
-            </TableRow>
+            {result.map((story) => {
+              return (
+                <TableRow key={story.id}>
+                  <TableHead>{story.type}</TableHead>
+                  <TableHead>{story.description}</TableHead>
+                  <TableHead>{story.point}</TableHead>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </section>
