@@ -37,8 +37,6 @@ assignee?: string;
 
 <script>
     function onClickTransform() {
-        console.log("onClickTransform");
-
         const simpleTypes = ["number", "string", "date"]
         let typeString = document.getElementById("TypeTextarea").value
         // 옵셔널 처리
@@ -68,7 +66,6 @@ assignee?: string;
                 }
             }
             result += "]),"
-            console.log("typeString replaceAll", enums)
             return result;
         })
         document.getElementById("result").value = typeString
