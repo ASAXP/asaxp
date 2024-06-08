@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Type to Zod</title>
+</head>
+<body>
+
+    <div class="container">
+        <textarea id="TypeTextarea" rows="12">
+id: number;
+// 사용자 스토리의 세 가지 종류
+type: "epic" | "story" | "spike";
+// 100자 정도로 스토리 설명 : 사용자는 ~~를 할 수 있다.
+description: string;
+// 스토리의 상세내용
+content: string;
+// story point
+point: number;
+// 담당자
+assignee?: string;
+        </textarea>
+        <button onclick="onClickTransform()">변환</button>
+        <textarea id="result" rows="12"></textarea>
+    </div>
+</body>
+<style>
+    .container textarea{
+        width: 100%;
+        height: 40%;
+    }
+    .container button {
+        width: 100%;
+        height: 3rem;
+    }
+</style>
+
+<script>
+    function onClickTransform() {
+        console.log("onClickTransform");
+
+        const simpleTypes = ["number", "string", "date"]
+        let typeString = document.getElementById("TypeTextarea").value
+        // 옵셔널 처리
+        for (const type of simpleTypes) {
+            typeString = typeString.replaceAll(`?: ${type};`, (a, b, c) => {
+                return `: z.${type}().nullable();`
+            })
+        }
+        // 기본타입 처리
+        for (const type of simpleTypes) {
+            typeString = typeString.replaceAll(`: ${type};`, (a, b, c) => {
+                return `: z.${type}(),`
+            })
+        }
+        // enum 처리
+        typeString = typeString.replaceAll(/:(.*\|.*);/g, (all, v) => {
+            const enums = v.split("|").map((key)=>key.trim());
+
+            let result = "z.union([";
+            let count = 0;
+            for (const en of enums) {
+                if (!simpleTypes.includes(en)) {
+                    if (count > 0) result += ', '
+                    count++
+                    result += `z.literal(${en})`
+                    console.log("result", result)
+                }
+            }
+            result += "]),"
+            console.log("typeString replaceAll", enums)
+            return result;
+        })
+        document.getElementById("result").value = typeString
+    }
+
+</script>
+</html>
