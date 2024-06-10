@@ -1,10 +1,7 @@
 import express from "express";
-import helmet from "helmet";
-import dotenv from "dotenv";
+// import helmet from "helmet";
 import globalErrorHandler from "./middleware/globalErrorHandler";
-import storyRouter from "@routes/story.route";
-
-dotenv.config();
+// import storyRouter from "@routes/story.route";
 
 const app = express();
 
@@ -14,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("get root");
 });
 
-app.use(storyRouter);
+// app.use(storyRouter);
 
 app.use(globalErrorHandler);
 
