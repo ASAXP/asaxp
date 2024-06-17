@@ -1,7 +1,27 @@
-export type StoryRepositoryType<T> = {
-  // getStory: () => Promise<T | undefined>;
-  getStoryList: () => Promise<T[] | undefined>;
-  // createStory: (story: T) => void;
-  // updateStory: (story: T) => void;
-  // deleteStory: (id: string) => void;
-};
+// import { Story } from "@domain/story/entities/story";
+// import { Repository } from "./interface";
+
+// type StoryRepository = Repository<Story>;
+
+// const storyRepository: StoryRepository = {
+//   async getList() {
+//     return Promise.resolve([]);
+//   },
+//   async getById(storyId) {
+//     return new Promise();
+//   },
+//   async create(story: Story) {
+//     return Promise.resolve(story);
+//   },
+//   async update(story) {
+//     return Promise.resolve(undefined);
+//   },
+//   async upsert(story) {
+//     return Promise.resolve(story);
+//   },
+//   async delete(storyId) {
+//     return new Error();
+//   },
+// };
+
+// export { storyRepository, StoryRepository };

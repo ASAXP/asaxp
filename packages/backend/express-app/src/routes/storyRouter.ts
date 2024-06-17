@@ -38,22 +38,37 @@ const getStoryList = async () => {
   return Promise.resolve(mockStoryList);
 };
 
-storyRouter.get("/story", async (req, res, next) => {
-  try {
-    const result = await getStoryList();
-    res.status(200).json(result);
-  } catch (e) {
-    next(e);
-  }
-});
-
-storyRouter.post("/story", async (req, res, next) => {
-  try {
-    const result = await getStoryList();
-    res.status(201).send("ok");
-  } catch (e) {
-    next(e);
-  }
-});
+storyRouter
+  .route("/story")
+  .get(async (req, res, next) => {
+    try {
+      const result = await getStoryList();
+      res.status(200).json(result);
+    } catch (e) {
+      next(e);
+    }
+  })
+  .post(async (req, res, next) => {
+    try {
+      // const result = await getStoryList();
+      res.status(201).send("ok");
+    } catch (e) {
+      next(e);
+    }
+  })
+  .put(async (req, res, next) => {
+    try {
+      res.status(200).send("ok");
+    } catch (e) {
+      next(e);
+    }
+  })
+  .delete(async (req, res, next) => {
+    try {
+      res.status(200).send("ok");
+    } catch (e) {
+      next(e);
+    }
+  });
 
 export { storyRouter };
