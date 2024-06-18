@@ -35,7 +35,7 @@ const mockStoryList: Story[] = [
 ];
 
 let id = 3;
-const storyRepository: StoryRepositoryInterface<Story> = {
+const storyRepository: StoryRepositoryInterface = {
   async getList() {
     return Promise.resolve(mockStoryList);
   },

@@ -1,8 +1,9 @@
-interface StoryRepositoryInterface<T> {
-  getList: () => Promise<T[]>;
-  getById: (id: number) => Promise<T | undefined>;
-  create: (item: Omit<T, "id">) => Promise<T | string>;
-  update: (item: T) => Promise<T | undefined>;
+import { Story } from "@domain/story/entities/story";
+interface StoryRepositoryInterface {
+  getList: () => Promise<Story[]>;
+  getById: (id: number) => Promise<Story | undefined>;
+  create: (item: Omit<Story, "id">) => Promise<Story | string>;
+  update: (item: Story) => Promise<Story | undefined>;
   delete: (id: number) => Promise<undefined | Error>;
 }
 
