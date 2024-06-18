@@ -7,19 +7,33 @@ const storyInteractor = {
     const result = await storyRepository.getList();
     return result;
   },
-  async getStoryById(id: number) {
+  async getStoryById(
+    { getById }: { getById: StoryRepositoryInterface<Story>["getById"] },
+    { id }: { id: number },
+  ) {
     const result = await storyRepository.getById(id);
     return result;
   },
-  async create(story: Omit<Story, "id">) {
-    const result = await storyRepository.create(story);
+  async create(
+    { createStory }: { createStory: StoryRepositoryInterface<Story>["create"] },
+    { story }: { story: Omit<Story, "id"> },
+  ) {
+    const result = await createStory(story);
     return result;
   },
-  async update(newStory: Story) {
-    const result = await storyRepository.update(newStory);
+  async update(
+    { updateStory }: { updateStory: StoryRepositoryInterface<Story>["update"] },
+    { story }: { story: Story },
+  ) {
+    const result = await updateStory(story);
+    return result;
   },
-  async delete(id: number) {
-    const result = await storyRepository.delete(id);
+  async delete(
+    { deleteStory }: { deleteStory: StoryRepositoryInterface<Story>["delete"] },
+    { id }: { id: number },
+  ) {
+    const result = await deleteStory(id);
+    return result;
   },
 };
 
