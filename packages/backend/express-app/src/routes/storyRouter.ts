@@ -7,7 +7,9 @@ const storyRouter = express.Router();
 
 storyRouter.get("/story", async (req, res, next) => {
   try {
-    const result = await storyInteractor.getStoryList(storyRepository.getList);
+    const result = await storyInteractor.getStoryList({
+      getList: storyRepository.getList,
+    });
     res.status(200).json(result);
   } catch (e) {
     next(e);
