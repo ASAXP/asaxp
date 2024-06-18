@@ -1,17 +1,20 @@
-import { storyRepository } from "@repository/inMemory/storyRepository";
 import { StoryRepositoryInterface } from "@repository/storyRepository.interface";
 import { Story } from "@domain/story/entities/story";
 
 const storyInteractor = {
-  async getStoryList(getList: StoryRepositoryInterface<Story>["getList"]) {
-    const result = await storyRepository.getList();
+  async getStoryList({
+    getList,
+  }: {
+    getList: StoryRepositoryInterface<Story>["getList"];
+  }) {
+    const result = await getList();
     return result;
   },
   async getStoryById(
     { getById }: { getById: StoryRepositoryInterface<Story>["getById"] },
     { id }: { id: number },
   ) {
-    const result = await storyRepository.getById(id);
+    const result = await getById(id);
     return result;
   },
   async create(
