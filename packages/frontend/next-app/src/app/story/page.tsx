@@ -41,7 +41,7 @@ export default async function page() {
           </TableBody>
         </Table>
       </section>
-      <section className="grid gap-12 my-20" aria-labelledby="">
+      <section className="grid gap-12 my-20">
         <StoryRow
           storyId={0}
           description="dskj"

@@ -1,7 +1,7 @@
 import express from "express";
 // import helmet from "helmet";
+import { storyRouter } from "@routes/storyRouter";
 import globalErrorHandler from "./middleware/globalErrorHandler";
-// import storyRouter from "@routes/story.route";
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("get root");
 });
 
-// app.use(storyRouter);
+app.use(storyRouter);
 
 app.use(globalErrorHandler);
 

@@ -4,7 +4,7 @@ const api = {
     init?: RequestInit,
   ): Promise<ResponseType> {
     const options = init ?? {};
-    const response = await fetch(url, options);
+    const response = await fetch(url, { ...options });
     if (!response.ok) {
       throw new Error("fetch failed");
     }
