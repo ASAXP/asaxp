@@ -1,43 +1,61 @@
-import { StoryRepositoryInterface } from "@repository/storyRepository.interface";
+import {
+  GetStoryListType,
+  GetStoryByIdType,
+  UpdateStoryType,
+  CreateStoryType,
+  DeleteStoryType,
+} from "@repository/storyRepository.interface";
 import { Story } from "@domain/story/entities/story";
 
-const storyInteractor = {
-  async getStoryList({
-    getList,
-  }: {
-    getList: StoryRepositoryInterface<Story>["getList"];
-  }) {
-    const result = await getList();
-    return result;
-  },
-  async getStoryById(
-    { getById }: { getById: StoryRepositoryInterface<Story>["getById"] },
-    { id }: { id: number },
-  ) {
-    const result = await getById(id);
-    return result;
-  },
-  async create(
-    { createStory }: { createStory: StoryRepositoryInterface<Story>["create"] },
-    { story }: { story: Omit<Story, "id"> },
-  ) {
-    const result = await createStory(story);
-    return result;
-  },
-  async update(
-    { updateStory }: { updateStory: StoryRepositoryInterface<Story>["update"] },
-    { story }: { story: Story },
-  ) {
-    const result = await updateStory(story);
-    return result;
-  },
-  async delete(
-    { deleteStory }: { deleteStory: StoryRepositoryInterface<Story>["delete"] },
-    { id }: { id: number },
-  ) {
-    const result = await deleteStory(id);
-    return result;
-  },
+const getStoryListInteractor = async ({
+  getStoryList,
+}: {
+  getStoryList: GetStoryListType;
+}) => {
+  const result = await getStoryList();
+  return result;
 };
 
-export { storyInteractor };
+const getStoryByIdInteractor = async (
+  {
+    getById,
+  }: {
+    getById: GetStoryByIdType;
+  },
+  { id }: { id: number },
+) => {
+  const result = await getById(id);
+  return result;
+};
+
+const createStoryInteractor = async (
+  { createStory }: { createStory: CreateStoryType },
+  { item }: { item: Omit<Story, "id"> },
+) => {
+  const result = await createStory(item);
+  return result;
+};
+
+const updateStoryInteractor = async (
+  { updateStory }: { updateStory: UpdateStoryType },
+  { story }: { story: Story },
+) => {
+  const result = await updateStory(story);
+  return result;
+};
+
+const deleteStoryInteractor = async (
+  { deleteStory }: { deleteStory: DeleteStoryType },
+  { id }: { id: number },
+) => {
+  const result = await deleteStory(id);
+  return result;
+};
+
+export {
+  getStoryListInteractor,
+  getStoryByIdInteractor,
+  deleteStoryInteractor,
+  updateStoryInteractor,
+  createStoryInteractor,
+};

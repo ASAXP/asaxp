@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { HttpError } from "@utils/HttpError";
+import { HttpError } from "@utils/Errors";
 
 import { ZodError } from "zod";
 
@@ -10,16 +10,16 @@ function globalErrorHandler(
   next: NextFunction,
 ) {
   if (err instanceof HttpError) {
-    res.status(err.statusCode).json({
-      message: err.message,
-    });
+    res.status(err.status).json(err.message);
+    return;
   } else if (err instanceof ZodError) {
-    console.log(err.issues);
-  } else {
-    res.status(500).json({
-      message: "Internal Server Error",
-    });
+    res.status(400).json(err.issues);
+    return;
   }
+  res.status(500).json({
+    message: "Internal Server Error",
+  });
+  return;
 }
 
 export default globalErrorHandler;
