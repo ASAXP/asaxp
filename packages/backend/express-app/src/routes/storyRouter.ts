@@ -1,4 +1,10 @@
-import { storyController } from "@controller/storyInteractor";
+import {
+  getStoryListInteractor,
+  getStoryByIdInteractor,
+  updateStoryInteractor,
+  createStoryInteractor,
+  deleteStoryInteractor,
+} from "@controller/storyInteractor";
 import { Story } from "@domain/story/entities/story";
 import {
   getStoryList,
@@ -18,8 +24,8 @@ const storyRouter = express.Router();
 storyRouter.get(
   "/story",
   wrapApi(async (req, res) => {
-    const result = await storyController.getStoryList({
-      getList: getStoryList,
+    const result = await getStoryListInteractor({
+      getStoryList,
     });
     res.status(200).json(result);
   }),
@@ -30,7 +36,7 @@ storyRouter.get(
   wrapApi(async (req, res) => {
     const { id } = req.params;
     if (!isNumeric(id)) throw new HttpError(400, "Invalid Parameter");
-    const result = await storyController.getStoryById(
+    const result = await getStoryByIdInteractor(
       { getById: getStoryById },
       { id: parseInt(id) },
     );
@@ -43,9 +49,9 @@ storyRouter.post(
   wrapApi(async (req, res) => {
     const { story } = req.body;
     const { id, ...parsedStory } = parseStory(story);
-    const result = await storyController.create(
+    const result = await createStoryInteractor(
       { createStory },
-      { story: parsedStory as Omit<Story, "id"> },
+      { item: parsedStory as Omit<Story, "id"> },
     );
     res.status(200).json(result);
   }),
@@ -55,7 +61,7 @@ storyRouter.put(
   "/story",
   wrapApi(async (req, res) => {
     const { story } = req.body;
-    const result = await storyController.update({ updateStory }, { story });
+    const result = await updateStoryInteractor({ updateStory }, { story });
     res.status(200).json(result);
   }),
 );
@@ -65,7 +71,7 @@ storyRouter.delete(
   wrapApi(async (req, res) => {
     const { id } = req.params;
     if (!isNumeric(id)) throw new HttpError(400, "Invalid Parameter");
-    const result = await storyController.delete(
+    const result = await deleteStoryInteractor(
       { deleteStory },
       { id: parseInt(id) },
     );
