@@ -1,10 +1,15 @@
 import { Story } from "@domain/story/entities/story";
-interface StoryRepositoryInterface {
-  getList: () => Promise<Story[]>;
-  getById: (id: number) => Promise<Story | undefined>;
-  create: (item: Omit<Story, "id">) => Promise<Story | string>;
-  update: (item: Story) => Promise<Story | undefined>;
-  delete: (id: number) => Promise<undefined | Error>;
-}
 
-export { StoryRepositoryInterface };
+type GetStoryListType = () => Promise<Story[] | undefined>;
+type GetStoryByIdType = (id: number) => Promise<Story | undefined>;
+type CreateStoryType = (item: Omit<Story, "id">) => Promise<Story | number>;
+type UpdateStoryType = (item: Story) => Promise<Story | undefined | number>;
+type DeleteStoryType = (id: number) => Promise<undefined | number>;
+
+export {
+  GetStoryListType,
+  GetStoryByIdType,
+  CreateStoryType,
+  UpdateStoryType,
+  DeleteStoryType,
+};
