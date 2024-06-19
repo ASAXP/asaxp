@@ -1,9 +1,9 @@
 class HttpError extends Error {
-  public statusCode: number;
+  public status: number;
 
-  constructor(statusCode: number = 500, message: string = "") {
+  constructor(status: number = 500, message: string = "") {
     super(message);
-    this.statusCode = statusCode;
+    this.status = status;
     Error.captureStackTrace(this, this.constructor);
   }
 }

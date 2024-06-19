@@ -1,71 +1,73 @@
-import { storyInteractor } from "@controller/storyInteractor";
+import { storyController } from "@controller/storyInteractor";
 import { Story } from "@domain/story/entities/story";
 import { storyRepository } from "@repository/inMemory/storyRepository";
+import { HttpError } from "@utils/Errors";
+import { isNumeric } from "@utils/isNumeric";
+import { parseStory } from "@libs/types";
+import wrapApi from "@utils/tryCatch";
 import express from "express";
 
 const storyRouter = express.Router();
 
-storyRouter.get("/story", async (req, res, next) => {
-  try {
-    const result = await storyInteractor.getStoryList({
+storyRouter.get(
+  "/story",
+  wrapApi(async (req, res) => {
+    const result = await storyController.getStoryList({
       getList: storyRepository.getList,
     });
     res.status(200).json(result);
-  } catch (e) {
-    next(e);
-  }
-});
+  }),
+);
 
-storyRouter.get("/story/:id", async (req, res, next) => {
-  try {
+storyRouter.get(
+  "/story/:id",
+  wrapApi(async (req, res) => {
     const { id } = req.params;
-    const result = await storyInteractor.getStoryById(
+    if (!isNumeric(id)) throw new HttpError(400, "Invalid Parameter");
+    const result = await storyController.getStoryById(
       { getById: storyRepository.getById },
       { id: parseInt(id) },
     );
     res.status(200).json(result);
-  } catch (e) {
-    next(e);
-  }
-});
+  }),
+);
 
-storyRouter.post("/story", async (req, res, next) => {
-  try {
+storyRouter.post(
+  "/story",
+  wrapApi(async (req, res) => {
     const { story } = req.body;
-    const result = await storyInteractor.create(
+    const { id, ...parsedStory } = parseStory(story);
+    const result = await storyController.create(
       { createStory: storyRepository.create },
-      { story: story as Omit<Story, "id"> },
+      { story: parsedStory as Omit<Story, "id"> },
     );
     res.status(200).json(result);
-  } catch (e) {
-    next(e);
-  }
-});
+  }),
+);
 
-storyRouter.put("/story", async (req, res, next) => {
-  try {
+storyRouter.put(
+  "/story",
+  wrapApi(async (req, res) => {
     const { story } = req.body;
-    const result = await storyInteractor.update(
+    const result = await storyController.update(
       { updateStory: storyRepository.update },
       { story },
     );
     res.status(200).json(result);
-  } catch (e) {
-    next(e);
-  }
-});
+  }),
+);
 
-storyRouter.delete("story/:id", async (req, res, next) => {
-  try {
+storyRouter.delete(
+  "story/:id",
+  wrapApi(async (req, res) => {
     const { id } = req.params;
-    const result = await storyInteractor.delete(
+    if (!isNumeric(id)) throw new HttpError(400, "Invalid Parameter");
+    const result = await storyController.delete(
       { deleteStory: storyRepository.delete },
       { id: parseInt(id) },
     );
     res.status(200).json(result);
-  } catch (e) {
-    next(e);
-  }
-});
+  }),
+);
 
 export { storyRouter };
