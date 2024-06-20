@@ -47,27 +47,33 @@ storyRouter.get(
 storyRouter.post(
   "/story",
   wrapApi(async (req, res) => {
-    const { story } = req.body;
-    const { id, ...parsedStory } = parseStory(story);
+    // TODO: description만 들어간 형태. 수정 필요
+    const story = req.body;
     const result = await createStoryInteractor(
       { createStory },
-      { item: parsedStory as Omit<Story, "id"> },
+      { item: story as Omit<Story, "id"> },
     );
     res.status(200).json(result);
   }),
 );
 
 storyRouter.put(
-  "/story",
+  "/story/:id",
   wrapApi(async (req, res) => {
-    const { story } = req.body;
-    const result = await updateStoryInteractor({ updateStory }, { story });
+    // TODO : 예외처리, 파라미터 요 수정
+    const id = parseInt(req.params.id, 10);
+    const { description } = req.body;
+    const temp = { id, description };
+    const result = await updateStoryInteractor(
+      { updateStory },
+      { story: temp as Story },
+    );
     res.status(200).json(result);
   }),
 );
 
 storyRouter.delete(
-  "story/:id",
+  "/story/:id",
   wrapApi(async (req, res) => {
     const { id } = req.params;
     if (!isNumeric(id)) throw new HttpError(400, "Invalid Parameter");
