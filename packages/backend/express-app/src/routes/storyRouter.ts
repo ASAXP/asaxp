@@ -15,7 +15,6 @@ import {
 } from "@repository/storyRepository";
 import { HttpError } from "@utils/Errors";
 import { isNumeric } from "@utils/isNumeric";
-import { parseStory } from "@libs/types";
 import wrapApi from "@utils/tryCatch";
 import express from "express";
 
@@ -61,9 +60,13 @@ storyRouter.put(
   "/story/:id",
   wrapApi(async (req, res) => {
     // TODO : 예외처리, 파라미터 요 수정
-    const id = parseInt(req.params.id, 10);
+    // const id = parseInt(req.params.id, 10);
+    const { id } = req.params;
+    if (!id || !isNumeric(id)) {
+      return res.status(400).send("invalid id value");
+    }
     const { description } = req.body;
-    const temp = { id, description };
+    const temp = { id: parseInt(id, 10), description };
     const result = await updateStoryInteractor(
       { updateStory },
       { story: temp as Story },

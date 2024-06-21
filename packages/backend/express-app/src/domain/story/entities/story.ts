@@ -13,5 +13,5 @@ export type Story = {
   // 부모 스토리
   parentStory: Story | null;
   // 자식 스토리
-  childStories: Story[];
+  childStories: Story[] | null;
 };
