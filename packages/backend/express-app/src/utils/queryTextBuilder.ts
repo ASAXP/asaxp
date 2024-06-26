@@ -1,8 +1,8 @@
 export type QueryObjectType = {
-  columns: string[];
+  fields: string[];
   values: string[];
   questionMarkString?: string;
-  updateMatchingPair?: string;
+  matchingPair?: string;
 };
 
 const queryTextBuilder = (item: Record<string, string | number>) => {
@@ -10,7 +10,7 @@ const queryTextBuilder = (item: Record<string, string | number>) => {
   let updateMatchingPair = "";
   const result = Object.entries(item).reduce<QueryObjectType>(
     (acc, [key, value]) => {
-      acc.columns.push(key);
+      acc.fields.push(key);
       acc.values.push("" + value);
       questionMarks += questionMarks.length > 0 ? ", ?" : "?";
       updateMatchingPair +=
@@ -18,12 +18,12 @@ const queryTextBuilder = (item: Record<string, string | number>) => {
       return acc;
     },
     {
-      columns: [],
+      fields: [],
       values: [],
     },
   );
   result.questionMarkString = questionMarks;
-  result.updateMatchingPair = updateMatchingPair;
+  result.matchingPair = updateMatchingPair;
   return result;
 };
 

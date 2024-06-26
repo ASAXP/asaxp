@@ -1,1 +1,0 @@
-const idValidator = (input: string) => {};

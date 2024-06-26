@@ -3,7 +3,7 @@ const api = {
     url: string,
     init?: RequestInit,
   ): Promise<ResponseType> {
-    const options = init ?? {};
+    const options = init ?? { cache: "no-cache" };
     const response = await fetch(url, { ...options });
     if (!response.ok) {
       throw new Error("fetch failed");

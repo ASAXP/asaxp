@@ -31,8 +31,6 @@ const storySchema: z.ZodSchema<Story> = z.lazy(() =>
   }),
 );
 
-// export type Story = z.infer<typeof story>;
-
 export const parseStory = (arg: unknown) => {
   const result = storySchema.parse(arg);
   return result;
