@@ -1,11 +1,22 @@
 import React from "react";
-import { z } from "zod";
+import { ZodIssue, z } from "zod";
 
-const useZodResolver = (schema: z.ZodSchema<unknown>) => {
+const useZodResolver = <T extends z.ZodType>(schema: T) => {
   return React.useCallback(
-    (args: unknown) => {
-      const { success, data, error } = schema.safeParse(args);
-      return success ? data : error;
+    (values: unknown) => {
+      const { success, data, error } = schema.safeParse(values);
+      if (error) {
+        const test = error.errors;
+      }
+      return success
+        ? { values: data as T, errors: {} }
+        : {
+            values: {},
+            errors: error.flatten((issue: ZodIssue) => ({
+              code: issue.code,
+              message: issue.message,
+            })),
+          };
     },
     [schema],
   );

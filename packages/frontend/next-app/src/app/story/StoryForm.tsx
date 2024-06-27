@@ -8,18 +8,17 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Form, useForm } from "react-hook-form";
-import { z } from "zod";
 import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { storySchema } from "@libs/types";
 import { Button } from "@/components/ui/button";
 
 export default function StoryForm() {
-  const formSchema = z.object({
-    description: z.string(),
-  });
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm({
     defaultValues: {
       description: "",
     },
+    resolver: zodResolver(storySchema),
   });
   return (
     <Form {...form}>
@@ -27,7 +26,7 @@ export default function StoryForm() {
         <FormField
           control={form.control}
           name="description"
-          render={({ field }) => {
+          render={() => {
             return (
               <FormItem>
                 <FormLabel>묘사</FormLabel>
