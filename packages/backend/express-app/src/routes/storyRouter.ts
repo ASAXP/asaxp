@@ -5,7 +5,7 @@ import {
   createStoryInteractor,
   deleteStoryInteractor,
 } from "@controller/storyInteractor";
-import { Story } from "@domain/story/entities/story";
+import { Story } from "@libs/types";
 import {
   getStoryList,
   getStoryById,

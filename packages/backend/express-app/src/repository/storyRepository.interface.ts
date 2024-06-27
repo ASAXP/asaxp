@@ -1,4 +1,4 @@
-import { Story } from "@domain/story/entities/story";
+import { Story } from "@libs/types";
 
 type GetStoryListType = () => Promise<Story[] | undefined>;
 type GetStoryByIdType = (id: number) => Promise<Story | undefined>;

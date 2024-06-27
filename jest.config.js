@@ -17,7 +17,7 @@ module.exports = {
       },
       testMatch: [
         "<rootDir>/packages/backend/express-app/src/**/*.test.ts",
-        "<rootDir>/packages/backend/express-app/src/**/test/*.test.ts",
+        "<rootDir>/packages/backend/express-app/src/__test__/**/*.test.ts",
       ],
       testPathIgnorePatterns: ["<rootDir>/packages/backend/express-app/dist"],
     },

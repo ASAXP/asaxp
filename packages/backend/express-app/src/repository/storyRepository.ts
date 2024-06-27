@@ -1,5 +1,5 @@
 import db from "@database/database";
-import { Story } from "@domain/story/entities/story";
+import { Story } from "@libs/types";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 import * as StoryRepositoryInterface from "@repository/storyRepository.interface";
 

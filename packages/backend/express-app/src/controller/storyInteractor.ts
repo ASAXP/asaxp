@@ -5,7 +5,7 @@ import {
   CreateStoryType,
   DeleteStoryType,
 } from "@repository/storyRepository.interface";
-import { Story } from "@domain/story/entities/story";
+import { Story } from "@libs/types";
 
 const getStoryListInteractor = async ({
   getStoryList,
