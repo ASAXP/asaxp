@@ -197,7 +197,7 @@ function DataTableDemo() {
   });
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <StoryFormWidget />
       <div className="flex items-center py-4">
         <Input

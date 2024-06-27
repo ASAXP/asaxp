@@ -1,9 +1,16 @@
 import express from "express";
 // import helmet from "helmet";
 import { storyRouter } from "@routes/storyRouter";
+import cors from "cors";
 import globalErrorHandler from "./middleware/globalErrorHandler";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  }),
+);
 
 app.use(express.json());
 

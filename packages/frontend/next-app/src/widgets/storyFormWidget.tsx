@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
+import api from "@/api/api";
 
 const formSchema = z.object({
   description: z.string({ message: "description needed" }),
@@ -28,8 +29,10 @@ export default function StoryFormWidget() {
     <Form {...form}>
       <form
         className="flex gap-4 items-end bg-slate-50"
-        onSubmit={form.handleSubmit((value) => {
-          console.log(value, "value submitted");
+        onSubmit={form.handleSubmit(async (value) => {
+          const result = await api.post("http://localhost:8080/story", value);
+
+          alert(result);
         })}
       >
         <FormField
