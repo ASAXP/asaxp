@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export type Story = {
+type Story = {
   id: number;
   // 사용자 스토리의 세 가지 종류
   type: "epic" | "story" | "spike";
@@ -25,13 +25,15 @@ const storySchema: z.ZodSchema<Story> = z.lazy(() =>
     description: z.string(),
     content: z.string(),
     point: z.number(),
-    assignee: z.string().optional(),
+    assignee: z.string(),
     parentStory: storySchema.optional(),
     childStories: storySchema.array().optional(),
   }),
 );
 
-export const parseStory = (arg: unknown) => {
+const parseStory = (arg: unknown) => {
   const result = storySchema.parse(arg);
   return result;
 };
+
+export { parseStory, storySchema, Story };
