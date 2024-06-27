@@ -1,15 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  Form,
-} from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import StoryFormWidget from "@/widgets/storyFormWidget";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -177,15 +169,6 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 function DataTableDemo() {
-  const formSchema = z.object({
-    description: z.string(),
-  });
-  const form = useForm<z.infer<typeof formSchema>>({
-    defaultValues: {
-      description: "",
-    },
-  });
-
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -214,34 +197,8 @@ function DataTableDemo() {
   });
 
   return (
-    <div className="w-full">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit((value) => {
-            console.log("submit", value);
-          })}
-          className="grid grid-flow-col items-end gap-2"
-        >
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel htmlFor="description"> hoorr</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...form.register("description")}
-                      placeholder="나는 <어떤 유저>로서 <>를 위해 <>기능을 원한를 위해 <>기능을 원한다다"
-                    />
-                  </FormControl>
-                </FormItem>
-              );
-            }}
-          />
-          <Button>submit</Button>
-        </form>
-      </Form>
+    <div className="w-full ">
+      <StoryFormWidget />
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
