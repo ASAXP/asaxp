@@ -197,8 +197,11 @@ function DataTableDemo() {
   });
 
   return (
-    <div className="w-full">
-      <StoryFormWidget />
+    <div className="">
+      <StoryFormWidget
+        className="w-full flex items-center justify-center "
+        story={{ description: "" }}
+      />
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."

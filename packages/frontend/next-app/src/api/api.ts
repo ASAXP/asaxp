@@ -18,10 +18,11 @@ const api = {
   ): Promise<ResponseType> {
     const options: RequestInit = {
       method: "POST",
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        ...init?.headers,
       },
-      body: JSON.stringify(data),
       ...init,
     };
     const response = await fetch(url, options);
