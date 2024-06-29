@@ -5,7 +5,7 @@ import {
   CreateStoryType,
   DeleteStoryType,
 } from "@repository/storyRepository.interface";
-import { Story } from "@libs/types";
+import { StoryDAOType, StoryType } from "@libs/types";
 
 const getStoryListInteractor = async ({
   getStoryList,
@@ -30,7 +30,7 @@ const getStoryByIdInteractor = async (
 
 const createStoryInteractor = async (
   { createStory }: { createStory: CreateStoryType },
-  { item }: { item: Omit<Story, "id"> },
+  { item }: { item: Omit<StoryDAOType, "id"> },
 ) => {
   const result = await createStory(item);
   return result;
@@ -38,7 +38,7 @@ const createStoryInteractor = async (
 
 const updateStoryInteractor = async (
   { updateStory }: { updateStory: UpdateStoryType },
-  { story }: { story: Story },
+  { story }: { story: StoryType },
 ) => {
   const result = await updateStory(story);
   return result;

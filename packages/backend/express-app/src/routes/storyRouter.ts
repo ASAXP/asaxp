@@ -5,7 +5,7 @@ import {
   createStoryInteractor,
   deleteStoryInteractor,
 } from "@controller/storyInteractor";
-import { Story } from "@libs/types";
+import { StoryType, parseStory } from "@libs/types";
 import {
   getStoryList,
   getStoryById,
@@ -15,7 +15,8 @@ import {
 } from "@repository/storyRepository";
 import { HttpError } from "@utils/Errors";
 import { isNumeric } from "@utils/isNumeric";
-import wrapApi from "@utils/tryCatch";
+import { successTrue } from "@utils/outcomeType";
+import wrapApi, { wrap } from "@utils/tryCatch";
 import express from "express";
 
 const storyRouter = express.Router();
@@ -45,14 +46,16 @@ storyRouter.get(
 
 storyRouter.post(
   "/story",
-  wrapApi(async (req, res) => {
+  wrap(async (req, res) => {
     // TODO: description만 들어간 형태. 수정 필요
     const story = req.body;
     const result = await createStoryInteractor(
       { createStory },
-      { item: story as Omit<Story, "id"> },
+      { item: story },
     );
-    res.status(200).json(result);
+
+    res.send("ok");
+    // res.status(200).json(successTrue(result));
   }),
 );
 
@@ -66,12 +69,12 @@ storyRouter.put(
       return res.status(400).send("invalid id value");
     }
     const { description } = req.body;
-    const temp = { id: parseInt(id, 10), description };
-    const result = await updateStoryInteractor(
-      { updateStory },
-      { story: temp as Story },
-    );
-    res.status(200).json(result);
+    // const temp = { id: parseInt(id, 10), description };
+    // const result = await updateStoryInteractor(
+    //   { updateStory },
+    //   { story: temp },
+    // );
+    // res.status(200).json(result);
   }),
 );
 

@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { RequestHandler, NextFunction, Request, Response } from "express";
 
 type CallbackFunctionType = (req: Request, res: Response) => void;
 
@@ -6,9 +6,23 @@ type CallbackFunctionType = (req: Request, res: Response) => void;
 export default function wrapApi(controller: CallbackFunctionType) {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
+      // eslint-disable-next-line no-console
+      console.log("req.body", req.body);
       controller(req, res);
-    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      // eslint-disable-next-line no-console
+      console.log("req.error", error);
       next(error);
     }
   };
+}
+
+interface PromiseRequestHandler {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (req: Request, res: Response, next: NextFunction): Promise<any>;
+}
+
+export function wrap(fn: PromiseRequestHandler): RequestHandler {
+  return (req, res, next) => fn(req, res, next).catch(next);
 }
