@@ -3,7 +3,7 @@ import { z } from "zod";
 // type Story = {
 //   id?: number;
 //   사용자 스토리의 세 가지 종류
-//   type: "epic" | "story" | "spike" | undefined;
+//   type: "epic" | "story" | "spike";
 //   100자 정도로 스토리 설명 : 사용자는 ~~를 할 수 있다.
 //   description: string;
 //   스토리의 상세내용
@@ -27,15 +27,17 @@ const baseStorySchema = z.object({
   assignee: z.string().optional(),
 });
 
-type StoryType = z.infer<typeof baseStorySchema> & {
-  parentStory?: StoryType;
-  childStories?: StoryType[];
+type BaseStoryType = z.infer<typeof baseStorySchema> & {
+  parentStory?: BaseStoryType;
+  childStories?: BaseStoryType[];
 };
 
-const storySchema: z.ZodSchema<StoryType> = baseStorySchema.extend({
+const storySchema: z.ZodSchema<BaseStoryType> = baseStorySchema.extend({
   parentStory: z.lazy(() => storySchema).optional(),
   childStories: z.array(z.lazy(() => storySchema)).optional(),
 });
+
+type AdvStoryType = z.infer<typeof storySchema>;
 
 const parseStory = (arg: unknown) => {
   const result = storySchema.parse(arg);
@@ -54,4 +56,10 @@ const StorySchemaDAO = z.object({
 
 type StoryDAOType = z.infer<typeof StorySchemaDAO>;
 
-export { parseStory, storySchema, StoryType, StorySchemaDAO, StoryDAOType };
+export {
+  parseStory,
+  storySchema,
+  BaseStoryType as StoryType,
+  StorySchemaDAO,
+  StoryDAOType,
+};
