@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { UserOutlined } from "@ant-design/icons";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { Layout, Menu } from "antd";
+import { Content, Footer, Header } from "antd/es/layout/layout";
+import Sider from "antd/es/layout/Sider";
+import React from "react";
+import SampleLayout from "@/widgets/demo-layout/Sample";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,30 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-primary backdrop-blur">
-          <nav className="container max-w-screen-2xl p-2">
-            <menu className="flex items-center gap-4 lg:gap-6">
-              <li>
-                <Link
-                  href="projects"
-                  className="transition-colors hover:text-foreground/80"
-                >
-                  projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="stories"
-                  className="transition-colors hover:text-foreground/80"
-                >
-                  stories
-                </Link>
-              </li>
-            </menu>
-          </nav>
-        </header>
-        <main>{children}</main>
-        <footer></footer>
+        <AntdRegistry>
+          <SampleLayout></SampleLayout>
+        </AntdRegistry>
       </body>
     </html>
   );
