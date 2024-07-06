@@ -8,7 +8,6 @@ import { Layout, Menu } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import React from "react";
-import SampleLayout from "@/widgets/demo-layout/Sample";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AntdRegistry>
-          <SampleLayout></SampleLayout>
-        </AntdRegistry>
+        <AntdRegistry>{children}</AntdRegistry>
       </body>
     </html>
   );

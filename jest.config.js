@@ -11,6 +11,17 @@ module.exports = {
   transformIgnorePatterns: ["/node_modules", "./**/*/node_modules"],
   projects: [
     {
+      displayName: "nextjs",
+      transform: {
+        "^.+\\.ts?$": "ts-jest",
+      },
+      testMatch: [
+        "<rootDir>/packages/frontend/next-app/src/**/*.test.ts",
+        "<rootDir>/packages/frontend/next-app/src/__test__/**/*.test.ts",
+      ],
+      testPathIgnorePatterns: ["<rootDir>/packages/backend/express-app/dist"],
+    },
+    {
       displayName: "express",
       transform: {
         "^.+\\.ts?$": "ts-jest",
