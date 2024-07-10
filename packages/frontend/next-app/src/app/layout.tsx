@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AntdRegistry>
-          <Layout>
+          <Layout hasSider>
             <SideNavigation />
             <Layout>{children}</Layout>
           </Layout>

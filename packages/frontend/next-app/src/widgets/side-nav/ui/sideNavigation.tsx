@@ -14,7 +14,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function SideNavigation() {
+const SideNavigation = React.memo(function SideNavigation() {
   const pathname = usePathname();
   const currentPath = {
     "/": "1",
@@ -71,6 +71,6 @@ function SideNavigation() {
       />
     </Sider>
   );
-}
+});
 
 export { SideNavigation };
