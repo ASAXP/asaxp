@@ -25,9 +25,7 @@ export default function RootLayout({
         <AntdRegistry>
           <Layout>
             <SideNavigation />
-            <Layout>
-              <Content>{children}</Content>
-            </Layout>
+            <Layout>{children}</Layout>
           </Layout>
         </AntdRegistry>
       </body>

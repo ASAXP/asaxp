@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Sider from "antd/es/layout/Sider";
 import { Menu } from "antd";
 import {
+  HomeOutlined,
   AimOutlined,
   UserOutlined,
   BuildOutlined,
@@ -9,43 +12,58 @@ import {
   CompassOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function SideNavigation() {
+  const pathname = usePathname();
+  const currentPath = {
+    "/": "1",
+    "/story-list": "2",
+    "/user-role-search": "2-1",
+    "/iteration-planning": "2-2",
+    "/iteration-review": "2-3",
+    "/chart": "3",
+  };
   return (
-    <Sider breakpoint="lg" collapsedWidth={0} collapsible>
+    <Sider width={250} breakpoint="lg" collapsedWidth={0} collapsible>
       <Menu
         theme="dark"
         mode="inline"
         defaultSelectedKeys={["1"]}
+        defaultOpenKeys={["2"]}
+        selectedKeys={[currentPath[pathname as keyof typeof currentPath]]}
         items={[
           {
             key: "1",
+            icon: React.createElement(HomeOutlined),
+            label: <Link href="/">Project</Link>,
+          },
+          {
+            key: "2",
             icon: React.createElement(AimOutlined),
             label: <Link href="/story-list">Planning Game</Link>,
             children: [
               {
-                key: "1-1",
+                key: "2-1",
                 icon: React.createElement(UserOutlined),
-                label: (
-                  <Link href="/user-role-search">User Role Searching</Link>
-                ),
+                label: <Link href="/user-role-search">User Role</Link>,
               },
               {
-                key: "1-2",
+                key: "2-2",
                 icon: React.createElement(BuildOutlined),
                 label: (
                   <Link href="/iteration-planning">Iteration Planning</Link>
                 ),
               },
               {
-                key: "1-3",
+                key: "2-3",
                 icon: React.createElement(CompassOutlined),
                 label: <Link href="/iteration-review">Iteration Review</Link>,
               },
             ],
           },
           {
-            key: "2",
+            key: "3",
             icon: React.createElement(LineChartOutlined),
             label: <Link href="/chart">BurnDown Chart</Link>,
           },
