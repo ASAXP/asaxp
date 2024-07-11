@@ -25,7 +25,19 @@ const SideNavigation = React.memo(function SideNavigation() {
     "/chart": "3",
   };
   return (
-    <Sider width={250} breakpoint="lg" collapsedWidth={0} collapsible>
+    <Sider
+      width={250}
+      breakpoint="md"
+      collapsedWidth={0}
+      collapsible
+      style={{
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+        height: "100vh",
+      }}
+    >
       <Menu
         theme="dark"
         mode="inline"
