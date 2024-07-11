@@ -36,6 +36,7 @@ const SideNavigation = React.memo(function SideNavigation() {
         top: 0,
         bottom: 0,
         height: "100vh",
+        zIndex: 500,
       }}
     >
       <Menu

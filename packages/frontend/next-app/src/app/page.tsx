@@ -1,11 +1,13 @@
+import React from "react";
 import { Content } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
-import React from "react";
+import { StoryTable } from "@/widgets/story-table/ui";
 
 export default function page() {
   return (
-    <Content>
+    <Content style={{ padding: "24px" }}>
       <Title>스토리</Title>
+      <StoryTable />
     </Content>
   );
 }

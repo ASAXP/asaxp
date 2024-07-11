@@ -1,4 +1,4 @@
-import { TableColumnsType } from "antd";
+import { Button, TableColumnsType } from "antd";
 
 export interface StoryTable {
   key: React.Key;
@@ -18,6 +18,12 @@ export const storyColumns: TableColumnsType<StoryTable> = [
   },
   {
     title: "storyPoint",
-    dataIndex: "StoryPoint",
+    dataIndex: "storyPoint",
   },
 ];
+
+export const storyRowSelection = {
+  onChange: (selectedRowKeys: React.Key[], selectedRows: StoryTable[]) => {
+    console.log(selectedRowKeys, selectedRows);
+  },
+};
