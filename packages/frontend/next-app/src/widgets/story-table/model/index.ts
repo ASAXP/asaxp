@@ -1,5 +1,5 @@
 export {
-  type StoryTable,
+  type IStory as StoryTableInterface,
   storyColumns,
   storyRowSelection as rowSelection,
-} from "./storyTable";
+} from "./storyTableModel";

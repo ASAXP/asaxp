@@ -1,7 +1,7 @@
 import React from "react";
 import { Content } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
-import { StoryTable } from "@/widgets/story-table/ui";
+import StoryTable from "@widgets/story-table/ui/storyTable";
 
 export default function page() {
   return (
