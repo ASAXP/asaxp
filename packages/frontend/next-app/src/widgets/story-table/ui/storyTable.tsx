@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Table } from "antd";
+import { Button, Flex, Table } from "antd";
 import { type IStory, storyRowSelection } from "../model/storyTableModel";
 import StoryFormDrawer from "@widgets/story-submit-drawer/ui/storyFormDrawer";
 import useStoryFormDrawer from "@widgets/story-submit-drawer/model/useDrawer";
@@ -34,6 +34,11 @@ export default function StoryTable() {
 
   return (
     <>
+      <Flex style={{ justifyContent: "end" }}>
+        <Button type="primary" style={{ marginBlockEnd: 20 }}>
+          반복주기 작성
+        </Button>
+      </Flex>
       <Table rowSelection={storyRowSelection} dataSource={data}>
         <Table.Column title="type" dataIndex="type" />
         <Table.Column title="description" dataIndex="description" />

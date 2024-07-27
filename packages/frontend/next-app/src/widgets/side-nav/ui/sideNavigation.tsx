@@ -70,6 +70,11 @@ const SideNavigation = React.memo(function SideNavigation() {
               },
               {
                 key: "2-3",
+                icon: React.createElement(BuildOutlined),
+                label: <Link href="/iteration-planning">Iteration Kanban</Link>,
+              },
+              {
+                key: "2-3",
                 icon: React.createElement(CompassOutlined),
                 label: <Link href="/iteration-review">Iteration Review</Link>,
               },
