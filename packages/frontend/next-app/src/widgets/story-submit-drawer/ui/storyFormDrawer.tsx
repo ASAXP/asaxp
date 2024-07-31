@@ -4,6 +4,7 @@ import React from "react";
 import { StoryTableInterface } from "@widgets/story-table/model";
 import { Button, Drawer, Form, Input, Select, Flex } from "antd";
 import { StoryFormProps } from "../model/useDrawer";
+import { useForm } from "antd/es/form/Form";
 
 export interface StoryFormDrawerProps extends Partial<StoryFormProps> {
   showCreateDrawer: () => void;
@@ -18,6 +19,7 @@ export default function StoryFormDrawer({
   showCreateDrawer,
   closeDrawer,
 }: StoryFormDrawerProps) {
+  const [form] = useForm();
   return (
     <>
       <Button
