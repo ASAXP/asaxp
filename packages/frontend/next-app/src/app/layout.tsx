@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import React from "react";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Layout } from "antd";
-import { Content } from "antd/es/layout/layout";
 import { SideNavigation } from "@widgets/side-nav/ui";
 
 const inter = Inter({ subsets: ["latin"] });
